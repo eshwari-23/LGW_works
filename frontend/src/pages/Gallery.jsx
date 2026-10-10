@@ -18,7 +18,11 @@ const Gallery = () => {
     setLoading(true);
     try {
       const res = await api.get(`/api/photos?category=${category}`);
-      setPhotos(res.data);
+      const shuffled = res.data
+      .map(v => [Math.random(), v])
+      .sort((a, b) => a[0] - b[0])
+      .map(([_, v]) => v);
+      setPhotos(shuffled);
     } catch (err) {
       console.error(err);
       setPhotos([]);
