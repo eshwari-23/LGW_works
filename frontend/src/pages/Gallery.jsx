@@ -14,9 +14,6 @@ const Gallery = () => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetchPhotos();
-  }, [category]);
-
   const fetchPhotos = async () => {
     setLoading(true);
     try {
@@ -29,6 +26,8 @@ const Gallery = () => {
       setLoading(false);
     }
   };
+  fetchPhotos();
+}, [category]);
 
   const handleCategoryChange = (cat) => {
     setCategory(cat);
