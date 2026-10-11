@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
+  const location = useLocation();
+  const isOnAdmin = location.pathname.startsWith('/admin');
+
   return (
     <nav className="navbar">
       <div className="nav-container">
@@ -18,6 +21,13 @@ const Navbar = () => {
           <li><Link to="/gallery">Gallery</Link></li>
           <li><Link to="/calculator" className="cta-btn">Cost Calculator</Link></li>
           <li><Link to="/contact">Contact</Link></li>
+          {isOnAdmin && (
+            <li>
+              <Link to="/admin-lgw-works" className="admin-link">
+                🔒 Admin
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
